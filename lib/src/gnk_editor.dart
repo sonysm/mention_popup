@@ -23,6 +23,8 @@ class GnkEditor extends StatefulWidget {
     this.maxLength,
     this.maxLengthEnforcement,
     this.onChanged,
+    this.maxLines,
+    this.minLines,
   });
 
   /// Page title.
@@ -32,6 +34,9 @@ class GnkEditor extends StatefulWidget {
   final FocusNode? focusNode;
   final InputDecoration? decoration;
   final int? maxLength;
+  final int? maxLines;
+  final int? minLines;
+
   final MaxLengthEnforcement? maxLengthEnforcement;
   final ValueChanged<String>? onChanged;
 
