@@ -128,6 +128,13 @@ class _GnkEditorState extends State<GnkEditor>
             _openPopup = openPopup;
             return MentionableTextField(
               focusNode: _node,
+              onChanged: widget.onChanged,
+              decoration: widget.decoration,
+              maxLength: widget.maxLength,
+              maxLines: widget.maxLines,
+              minLines: widget.minLines,
+              autocorrect: widget.autocorrect,
+              obscureText: widget.obscureText,
               onControllerReady: (value) => _textFieldController = value,
               onSubmitted: print,
               mentionables: widget.mentionList,
@@ -138,7 +145,6 @@ class _GnkEditorState extends State<GnkEditor>
                   _openPopup!.call();
                 }
               },
-              decoration: widget.decoration,
             );
           }),
         ),
