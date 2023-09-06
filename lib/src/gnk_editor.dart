@@ -25,6 +25,8 @@ class GnkEditor extends StatefulWidget {
     this.onChanged,
     this.maxLines,
     this.minLines,
+    this.autocorrect = true,
+    this.obscureText = false,
   });
 
   /// Page title.
@@ -36,6 +38,8 @@ class GnkEditor extends StatefulWidget {
   final int? maxLength;
   final int? maxLines;
   final int? minLines;
+  final bool obscureText;
+  final bool autocorrect;
 
   final MaxLengthEnforcement? maxLengthEnforcement;
   final ValueChanged<String>? onChanged;
