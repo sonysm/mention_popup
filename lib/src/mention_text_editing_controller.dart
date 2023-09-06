@@ -64,7 +64,7 @@ class MentionTextEditingController extends TextEditingController {
         TextSelection.collapsed(offset: indexSelection - candidate.length + 2);
   }
 
-  void _onFieldChanged(
+  void onFieldChanged(
     String value,
     List<Mentionable> mentionables,
   ) {
@@ -73,20 +73,8 @@ class MentionTextEditingController extends TextEditingController {
       final isMentioningRegexp = RegExp(r'^@[a-zA-Z ]*$');
       final mention = isMentioningRegexp.stringMatch(candidate)?.substring(1);
       if (mention != null) {
-        final perfectMatch = mentionables.firstWhereOrNull(
-          (element) =>
-              element.match(mention) && element.mentionLabel == mention,
-        );
-        if (perfectMatch != null) {
-          pickMentionable(perfectMatch);
-        } else {
-          final matchList =
-              mentionables.where((element) => element.match(mention)).toList();
-          _onMentionablesChanged(matchList);
-        }
+        _onMentionablesChanged(mention);
       }
-    } else {
-      _onMentionablesChanged([]);
     }
   }
 
@@ -137,7 +125,6 @@ class MentionTextEditingController extends TextEditingController {
     final candidate = _getMentionCandidate(text);
     if (candidate != null) {
       _addMention(candidate, mentionable);
-      _onMentionablesChanged([]);
     }
   }
 

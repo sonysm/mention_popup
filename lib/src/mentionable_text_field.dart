@@ -16,9 +16,7 @@ part 'mentionable.dart';
 
 /// The type of callback when mentionables candidate
 /// have changed.
-typedef MentionablesChangedCallback = void Function(
-  List<Mentionable> mentionables,
-);
+typedef MentionablesChangedCallback = void Function(String mention);
 
 /// A Widget built on top of [TextField] to add mentions feature.
 /// To work, it required [mentionables] to let it know what can be mentioned.
@@ -461,7 +459,7 @@ class _MentionableTextFieldState extends State<MentionableTextField> {
 
   void _onChanged(String value) {
     final mentionables = widget.mentionables;
-    _controller._onFieldChanged(value, mentionables);
+    _controller.onFieldChanged(value, mentionables);
     widget.onChanged?.call(value);
   }
 
