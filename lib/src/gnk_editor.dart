@@ -8,6 +8,7 @@
  * Copyright (c) 2023 ERROR-DEV All rights reserved.
  */
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mention_popup/mentionable_text_field.dart';
 import 'package:mention_popup/src/keep_popup/with_keep_keyboard_popup_menu.dart';
 
@@ -19,6 +20,9 @@ class GnkEditor extends StatefulWidget {
     required this.mentionList,
     this.decoration,
     this.focusNode,
+    this.maxLength,
+    this.maxLengthEnforcement,
+    this.onChanged,
   });
 
   /// Page title.
@@ -27,6 +31,9 @@ class GnkEditor extends StatefulWidget {
   /// The focus node used by the [TextField].
   final FocusNode? focusNode;
   final InputDecoration? decoration;
+  final int? maxLength;
+  final MaxLengthEnforcement? maxLengthEnforcement;
+  final ValueChanged<String>? onChanged;
 
   @override
   State<GnkEditor> createState() => _GnkEditorState();
