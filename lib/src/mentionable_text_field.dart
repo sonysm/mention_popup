@@ -4,11 +4,11 @@ import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mentionable_text_field/src/constants.dart';
-import 'package:mentionable_text_field/src/list_extension.dart';
-import 'package:mentionable_text_field/src/regular_expressions.dart';
-import 'package:mentionable_text_field/src/social_text_span_builder.dart';
-import 'package:mentionable_text_field/src/string_extension.dart';
+import 'package:mention_popup/src/constants.dart';
+import 'package:mention_popup/src/list_extension.dart';
+import 'package:mention_popup/src/regular_expressions.dart';
+import 'package:mention_popup/src/social_text_span_builder.dart';
+import 'package:mention_popup/src/string_extension.dart';
 
 part 'mention_text_editing_controller.dart';
 

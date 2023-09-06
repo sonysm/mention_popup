@@ -8,8 +8,8 @@
  * Copyright (c) 2023 ERROR-DEV All rights reserved.
  */
 import 'package:flutter/material.dart';
-import 'package:mentionable_text_field/mentionable_text_field.dart';
-import 'package:mentionable_text_field/src/keep_popup/with_keep_keyboard_popup_menu.dart';
+import 'package:mention_popup/mentionable_text_field.dart';
+import 'package:mention_popup/src/keep_popup/with_keep_keyboard_popup_menu.dart';
 
 /// Home page.
 class GnkEditor extends StatefulWidget {
