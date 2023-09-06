@@ -19,6 +19,7 @@ class GnkEditor extends StatefulWidget {
     super.key,
     required this.mentionList,
     required this.onControllerReady,
+    required this.onDetectMention,
     this.decoration,
     this.focusNode,
     this.maxLength,
@@ -46,6 +47,7 @@ class GnkEditor extends StatefulWidget {
   final ValueChanged<String>? onChanged;
 
   final ValueChanged<MentionTextEditingController>? onControllerReady;
+  final void Function(String) onDetectMention;
 
   @override
   State<GnkEditor> createState() => _GnkEditorState();
@@ -145,6 +147,7 @@ class _GnkEditorState extends State<GnkEditor>
               onSubmitted: print,
               mentionables: widget.mentionList,
               onMentionablesChanged: (mentionables) {
+                widget.onDetectMention(mentionables);
                 if (mentionables.isEmpty) {
                   _closePopup!.call();
                 } else {

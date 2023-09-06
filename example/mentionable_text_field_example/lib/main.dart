@@ -87,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage>
         appBar: AppBar(),
         body: Container(
           child: GnkEditor(
+            onDetectMention: (c) {},
             onControllerReady: (c) {},
             mentionList: [
               MyUser('jonh', image),
