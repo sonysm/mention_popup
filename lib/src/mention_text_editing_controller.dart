@@ -109,7 +109,7 @@ class MentionTextEditingController extends TextEditingController {
           // Mandatory WidgetSpan so that it takes the appropriate char number.
           return WidgetSpan(
             child: Text(
-              mention._fullMentionLabel,
+              mention.mentionLabel,
               style: _mentionStyle.copyWith(fontSize: 16),
             ),
           );

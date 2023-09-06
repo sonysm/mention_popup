@@ -6,8 +6,6 @@ abstract class Mentionable {
   /// default constructor.
   const Mentionable();
 
-  String get _fullMentionLabel => mentionLabel;
-
   /// Text that will be input after @ character in
   /// [TextField] to show mention.
   String get mentionLabel;
@@ -16,9 +14,9 @@ abstract class Mentionable {
 
   /// Way to render mention as a String in
   /// the TextField final result.
-  String buildMention() => _fullMentionLabel;
+  String buildMention() => mentionLabel;
 
   /// Return true when [search] match the mentionable.
   bool match(String search) =>
-      _fullMentionLabel.toLowerCase().contains(search.toLowerCase());
+      mentionLabel.toLowerCase().contains(search.toLowerCase());
 }

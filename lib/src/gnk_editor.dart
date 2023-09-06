@@ -14,10 +14,17 @@ import 'package:mention_popup/src/keep_popup/with_keep_keyboard_popup_menu.dart'
 /// Home page.
 class GnkEditor extends StatefulWidget {
   /// default constructor.
-  const GnkEditor({super.key, required this.mentionList});
+  const GnkEditor({
+    super.key,
+    required this.mentionList,
+    this.focusNode,
+  });
 
   /// Page title.
   final List<Mentionable> mentionList;
+
+  /// The focus node used by the [TextField].
+  final FocusNode? focusNode;
 
   @override
   State<GnkEditor> createState() => _GnkEditorState();

@@ -473,13 +473,6 @@ class _MentionableTextFieldState extends State<MentionableTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      // contextMenuBuilder: (context, editeState) {
-      //   return Container(
-      //     color: Colors.red,
-      //     width: 100,
-      //     height: 44,
-      //   );
-      // },
       onTap: widget.onTap,
       controller: _controller,
       style: widget.style,
