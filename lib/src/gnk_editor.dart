@@ -17,6 +17,7 @@ class GnkEditor extends StatefulWidget {
   const GnkEditor({
     super.key,
     required this.mentionList,
+    this.decoration,
     this.focusNode,
   });
 
@@ -25,6 +26,7 @@ class GnkEditor extends StatefulWidget {
 
   /// The focus node used by the [TextField].
   final FocusNode? focusNode;
+  final InputDecoration? decoration;
 
   @override
   State<GnkEditor> createState() => _GnkEditorState();
@@ -120,11 +122,7 @@ class _GnkEditorState extends State<GnkEditor>
                   _openPopup!.call();
                 }
               },
-              decoration: const InputDecoration(
-                // icon: Icon(Icons.alternate_email),
-                hintText: 'Type @ to trigger mention',
-                border: InputBorder.none,
-              ),
+              decoration: widget.decoration,
             );
           }),
         ),
