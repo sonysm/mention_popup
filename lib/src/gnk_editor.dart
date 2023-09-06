@@ -18,6 +18,7 @@ class GnkEditor extends StatefulWidget {
   const GnkEditor({
     super.key,
     required this.mentionList,
+    required this.onControllerReady,
     this.decoration,
     this.focusNode,
     this.maxLength,
@@ -43,6 +44,8 @@ class GnkEditor extends StatefulWidget {
 
   final MaxLengthEnforcement? maxLengthEnforcement;
   final ValueChanged<String>? onChanged;
+
+  final ValueChanged<MentionTextEditingController>? onControllerReady;
 
   @override
   State<GnkEditor> createState() => _GnkEditorState();
@@ -135,7 +138,10 @@ class _GnkEditorState extends State<GnkEditor>
               minLines: widget.minLines,
               autocorrect: widget.autocorrect,
               obscureText: widget.obscureText,
-              onControllerReady: (value) => _textFieldController = value,
+              onControllerReady: (value) {
+                _textFieldController = value;
+                widget.onControllerReady!(value);
+              },
               onSubmitted: print,
               mentionables: widget.mentionList,
               onMentionablesChanged: (mentionables) {
