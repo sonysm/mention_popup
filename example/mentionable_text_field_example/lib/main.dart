@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage>
           child: GnkEditor(
             onDetectMention: (c) {},
             onControllerReady: (c) {},
-            mentionList: [
+            mentionList: () => [
               MyUser('jonh', image),
               MyUser('doh', image),
               MyUser('albert', image),

@@ -7,6 +7,8 @@
  * -----
  * Copyright (c) 2023 ERROR-DEV All rights reserved.
  */
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mention_popup/mentionable_text_field.dart';
@@ -32,7 +34,7 @@ class GnkEditor extends StatefulWidget {
   });
 
   /// Page title.
-  final List<Mentionable> mentionList;
+  final FutureOr<List<Mentionable>> Function() mentionList;
 
   /// The focus node used by the [TextField].
   final FocusNode? focusNode;
@@ -57,6 +59,8 @@ class _GnkEditorState extends State<GnkEditor>
     with SingleTickerProviderStateMixin {
   late MentionTextEditingController _textFieldController;
   final FocusNode _node = FocusNode();
+
+  List<Mentionable> _mentionList = [];
 
   @override
   void initState() {
@@ -124,7 +128,7 @@ class _GnkEditorState extends State<GnkEditor>
             _closePopup = closePopup;
             return MentionPopup(
               closePopup: closePopup,
-              list: widget.mentionList,
+              list: _mentionList,
               builder: (p0, index, mention) =>
                   _mentionCell(mention, closePopup),
             );
@@ -145,12 +149,13 @@ class _GnkEditorState extends State<GnkEditor>
                 widget.onControllerReady!(value);
               },
               onSubmitted: print,
-              mentionables: widget.mentionList,
-              onMentionablesChanged: (mentionables) {
+              mentionables: _mentionList,
+              onMentionablesChanged: (mentionables) async {
                 widget.onDetectMention(mentionables);
                 if (mentionables.isEmpty) {
                   _closePopup!.call();
                 } else {
+                  _mentionList = await widget.mentionList();
                   _openPopup!.call();
                 }
               },
