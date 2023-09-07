@@ -150,12 +150,12 @@ class _GnkEditorState extends State<GnkEditor>
               },
               onSubmitted: print,
               mentionables: _mentionList,
-              onMentionablesChanged: (mentionables) async {
-                widget.onDetectMention(mentionables);
-                if (mentionables.isEmpty) {
+              onMentionablesChanged: (mention) async {
+                widget.onDetectMention(mention);
+                _mentionList = await widget.mentionList();
+                if (mention.isEmpty || _mentionList.isEmpty) {
                   _closePopup!.call();
                 } else {
-                  _mentionList = await widget.mentionList();
                   _openPopup!.call();
                 }
               },
