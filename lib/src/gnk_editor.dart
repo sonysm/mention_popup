@@ -150,6 +150,7 @@ class _GnkEditorState extends State<GnkEditor>
               onControllerReady: (value) {
                 _textFieldController = value;
                 widget.onControllerReady!(value);
+                _textFieldController.onTextChange = widget.onChanged;
               },
               onSubmitted: print,
               mentionables: _mentionList,

@@ -15,6 +15,7 @@ class MentionTextEditingController extends TextEditingController {
   MentionTextEditingController({
     required MentionablesChangedCallback onMentionablesChanged,
     this.escapingMentionCharacter = Constants.escapingMentionCharacter,
+    this.onTextChange,
     TextStyle? mentionStyle,
   })  : _onMentionablesChanged = onMentionablesChanged,
         _storedMentionables = [],
@@ -35,6 +36,8 @@ class MentionTextEditingController extends TextEditingController {
   /// Order of elements is the same as in the [TextField].
   final List<Mentionable> _storedMentionables;
   final MentionablesChangedCallback _onMentionablesChanged;
+
+  ValueChanged<String>? onTextChange;
 
   List<Mentionable> get mentionList => _storedMentionables;
   set mentionList(List<Mentionable> list) {
@@ -67,6 +70,11 @@ class MentionTextEditingController extends TextEditingController {
     text = '${text.replaceAll(candidate, escapingMentionCharacter)} ';
     selection =
         TextSelection.collapsed(offset: indexSelection - candidate.length + 2);
+
+    /// just make trigger to on change text field
+    if (onTextChange != null) {
+      onTextChange!(text);
+    }
   }
 
   void onFieldChanged(
@@ -89,8 +97,8 @@ class MentionTextEditingController extends TextEditingController {
     TextStyle? style,
     required bool withComposing,
   }) {
-    final regexp =
-        RegExp('(?=$escapingMentionCharacter)|(?<=$escapingMentionCharacter)');
+    final regexp = RegExp(
+        '(?=$escapingMentionCharacter)|(?<=$escapingMentionCharacter)|(?=#\\S+)|(?<=\\s+)');
     // split result on "Hello ∞ where is ∞?" is: [Hello,∞, where is ,∞,?]
     final res = text.split(regexp);
     final mentionQueue = _mentionQueue();
@@ -106,6 +114,10 @@ class MentionTextEditingController extends TextEditingController {
               style: _mentionStyle.copyWith(fontSize: 16),
             ),
           );
+        }
+
+        if (e.startsWith('#')) {
+          return WidgetSpan(child: Text(e, style: _mentionStyle));
         }
 
         return SocialTextSpanBuilder(
