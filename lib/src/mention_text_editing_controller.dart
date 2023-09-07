@@ -114,7 +114,8 @@ class MentionTextEditingController extends TextEditingController {
     required bool withComposing,
   }) {
     final regexp = RegExp(
-        '(?=$escapingMentionCharacter)|(?<=$escapingMentionCharacter)|(?=#\\S+)|(?<=\\s+)|(^((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\://)?(www.|[a-zA-Z0-9].)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,6}(\:[0-9]{1,5})*(/(\$|[a-zA-Z0-9\.\,\;\?\'\\\+&amp;%\$#\=~_\-]+))*\$)');
+        '(?=$escapingMentionCharacter)|(?<=$escapingMentionCharacter)|(?=#\\S+)|(?<=\\s+)');
+
     // split result on "Hello ∞ where is ∞?" is: [Hello,∞, where is ,∞,?]
     final res = text.split(regexp);
     final mentionQueue = _mentionQueue();
@@ -145,10 +146,7 @@ class MentionTextEditingController extends TextEditingController {
             DetectedType.hashtag: hashTagRegExp,
             DetectedType.url: urlRegex,
           },
-          detectionTextStyles: {
-            DetectedType.hashtag: _mentionStyle,
-            DetectedType.url: _mentionStyle,
-          },
+          detectionTextStyles: {DetectedType.url: _mentionStyle},
           defaultTextStyle: null,
         ).build(e);
       }).toList(),
