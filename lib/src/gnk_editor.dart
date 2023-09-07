@@ -160,9 +160,9 @@ class _GnkEditorState extends State<GnkEditor>
                 }
                 _mentionList(await widget.mentionList(mention));
                 if (mention.trim().isEmpty || _mentionList.isEmpty) {
-                  _closePopup!.call();
+                  _closePopup?.call();
                 } else {
-                  _openPopup!.call();
+                  _openPopup?.call();
                 }
               },
             );
