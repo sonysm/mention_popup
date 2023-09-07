@@ -97,7 +97,7 @@ class MentionTextEditingController extends TextEditingController {
     return TextSpan(
       style: style,
       children: res.map((e) {
-        if (e == escapingMentionCharacter) {
+        if (e == escapingMentionCharacter && mentionQueue.isNotEmpty) {
           final mention = mentionQueue.removeFirst();
           // Mandatory WidgetSpan so that it takes the appropriate char number.
           return WidgetSpan(
