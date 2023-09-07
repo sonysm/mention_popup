@@ -24,4 +24,8 @@ class MyUser extends Mentionable {
 
   @override
   int get hashCode => mentionLabel.hashCode;
+
+  @override
+  // TODO: implement displayTitle
+  String get displayTitle => throw UnimplementedError();
 }

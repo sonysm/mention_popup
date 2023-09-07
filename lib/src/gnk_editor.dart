@@ -95,11 +95,15 @@ class _GnkEditorState extends State<GnkEditor>
   Future<void> Function()? _closePopup;
 
   Widget _mentionCell(Mentionable mention, Future<void> Function() closePopup) {
+    var avatar = mention.avatar.isEmpty
+        ? "https://i.ibb.co/9ryjmVN/ic-profile.png"
+        : mention.avatar;
+
     return ListTile(
       dense: true,
       horizontalTitleGap: 8,
       leading: CircleAvatar(
-        backgroundImage: NetworkImage(mention.avatar),
+        backgroundImage: NetworkImage(avatar),
       ),
       title: Text(mention.displayTitle),
       onTap: () {
