@@ -40,6 +40,23 @@ class MentionTextEditingController extends TextEditingController {
   ValueChanged<String>? onTextChange;
 
   List<Mentionable> get mentionList => _storedMentionables;
+
+  @override
+  set text(newValue) {
+    super.text;
+    var p1 = "<span>";
+    var p2 = "</span>";
+    var replace = RegExp('(?=$p1\\S+)|(?<=$p2)');
+    var content = newValue;
+    content = content.split(replace).map((e) {
+      if (e.startsWith('<span>') && e.endsWith('</span>')) {
+        return escapingMentionCharacter;
+      }
+      return e;
+    }).join();
+    text = content;
+  }
+
   set mentionList(List<Mentionable> list) {
     _storedMentionables.addAll(list);
   }
