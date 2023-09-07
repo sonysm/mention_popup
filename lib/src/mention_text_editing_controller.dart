@@ -136,6 +136,10 @@ class MentionTextEditingController extends TextEditingController {
           return TextSpan(text: e, style: _mentionStyle);
         }
 
+        if (urlRegex.firstMatch(e) != null) {
+          return TextSpan(text: e, style: _mentionStyle);
+        }
+
         return SocialTextSpanBuilder(
           regularExpressions: {
             DetectedType.hashtag: hashTagRegExp,
