@@ -130,7 +130,7 @@ class _GnkEditorState extends State<GnkEditor>
             return Obx(
               () => MentionPopup(
                 closePopup: closePopup,
-                list: _mentionList,
+                list: _mentionList.value,
                 builder: (p0, index, mention) =>
                     _mentionCell(mention, closePopup),
               ),
