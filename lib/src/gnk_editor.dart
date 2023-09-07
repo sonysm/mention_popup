@@ -100,7 +100,7 @@ class _GnkEditorState extends State<GnkEditor>
       leading: CircleAvatar(
         backgroundImage: NetworkImage(mention.avatar),
       ),
-      title: Text(mention.mentionLabel),
+      title: Text(mention.displayTitle),
       onTap: () {
         _textFieldController.pickMentionable(mention);
         closePopup.call();

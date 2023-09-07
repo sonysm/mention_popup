@@ -6,6 +6,8 @@ abstract class Mentionable {
   /// default constructor.
   const Mentionable();
 
+  String get displayTitle;
+
   /// Text that will be input after @ character in
   /// [TextField] to show mention.
   String get mentionLabel;
