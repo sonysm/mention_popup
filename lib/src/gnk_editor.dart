@@ -59,7 +59,6 @@ class GnkEditor extends StatefulWidget {
 class _GnkEditorState extends State<GnkEditor>
     with SingleTickerProviderStateMixin {
   late MentionTextEditingController _textFieldController;
-  final FocusNode _node = FocusNode();
 
   var _mentionList = List<Mentionable>.empty().obs;
 
@@ -139,7 +138,7 @@ class _GnkEditorState extends State<GnkEditor>
           childBuilder: ((context, openPopup) {
             _openPopup = openPopup;
             return MentionableTextField(
-              focusNode: _node,
+              focusNode: widget.focusNode,
               onChanged: widget.onChanged,
               decoration: widget.decoration,
               maxLength: widget.maxLength,
