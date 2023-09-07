@@ -12,6 +12,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/state_manager.dart';
+import 'package:get/utils.dart';
 import 'package:mention_popup/mentionable_text_field.dart';
 import 'package:mention_popup/src/keep_popup/with_keep_keyboard_popup_menu.dart';
 
