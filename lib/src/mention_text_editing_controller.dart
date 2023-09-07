@@ -43,7 +43,6 @@ class MentionTextEditingController extends TextEditingController {
 
   @override
   set text(newValue) {
-    super.text;
     var p1 = "<span>";
     var p2 = "</span>";
     var replace = RegExp('(?=$p1\\S+)|(?<=$p2)');
@@ -54,7 +53,7 @@ class MentionTextEditingController extends TextEditingController {
       }
       return e;
     }).join();
-    text = content;
+    super.text = content;
   }
 
   set mentionList(List<Mentionable> list) {
