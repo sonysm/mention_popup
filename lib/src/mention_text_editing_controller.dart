@@ -36,6 +36,11 @@ class MentionTextEditingController extends TextEditingController {
   final List<Mentionable> _storedMentionables;
   final MentionablesChangedCallback _onMentionablesChanged;
 
+  List<Mentionable> get mentionList => _storedMentionables;
+  set mentionList(List<Mentionable> list) {
+    _storedMentionables.addAll(list);
+  }
+
   String? _getMentionCandidate(String value) {
     const mentionCharacter = Constants.mentionCharacter;
     final indexCursor = selection.base.offset;
