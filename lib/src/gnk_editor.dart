@@ -11,6 +11,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/state_manager.dart';
 import 'package:mention_popup/mentionable_text_field.dart';
 import 'package:mention_popup/src/keep_popup/with_keep_keyboard_popup_menu.dart';
 
@@ -34,7 +35,7 @@ class GnkEditor extends StatefulWidget {
   });
 
   /// Page title.
-  final FutureOr<List<Mentionable>> Function() mentionList;
+  final FutureOr<List<Mentionable>> Function(String) mentionList;
 
   /// The focus node used by the [TextField].
   final FocusNode? focusNode;
@@ -60,7 +61,7 @@ class _GnkEditorState extends State<GnkEditor>
   late MentionTextEditingController _textFieldController;
   final FocusNode _node = FocusNode();
 
-  List<Mentionable> _mentionList = [];
+  var _mentionList = List<Mentionable>.empty().obs;
 
   @override
   void initState() {
@@ -126,11 +127,13 @@ class _GnkEditorState extends State<GnkEditor>
           ),
           menuBuilder: (context, closePopup) {
             _closePopup = closePopup;
-            return MentionPopup(
-              closePopup: closePopup,
-              list: _mentionList,
-              builder: (p0, index, mention) =>
-                  _mentionCell(mention, closePopup),
+            return Obx(
+              () => MentionPopup(
+                closePopup: closePopup,
+                list: _mentionList,
+                builder: (p0, index, mention) =>
+                    _mentionCell(mention, closePopup),
+              ),
             );
           },
           childBuilder: ((context, openPopup) {
@@ -152,8 +155,8 @@ class _GnkEditorState extends State<GnkEditor>
               mentionables: _mentionList,
               onMentionablesChanged: (mention) async {
                 widget.onDetectMention(mention);
-                _mentionList = await widget.mentionList();
-                if (mention.isEmpty || _mentionList.isEmpty) {
+                _mentionList(await widget.mentionList(mention));
+                if (mention.trim().isEmpty || _mentionList.isEmpty) {
                   _closePopup!.call();
                 } else {
                   _openPopup!.call();
