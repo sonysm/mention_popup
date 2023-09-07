@@ -103,6 +103,7 @@ class _GnkEditorState extends State<GnkEditor>
       dense: true,
       horizontalTitleGap: 8,
       leading: CircleAvatar(
+        backgroundColor: Colors.grey.shade300,
         backgroundImage: NetworkImage(avatar),
       ),
       title: Text(mention.displayTitle),
