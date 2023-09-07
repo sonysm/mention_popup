@@ -133,7 +133,7 @@ class MentionTextEditingController extends TextEditingController {
         }
 
         if (e.startsWith('#')) {
-          return WidgetSpan(child: Text(e, style: _mentionStyle));
+          return TextSpan(text: e, style: _mentionStyle);
         }
 
         return SocialTextSpanBuilder(
