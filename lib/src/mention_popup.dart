@@ -27,7 +27,7 @@ class MentionPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 320,
-      height: min(44.0 * list.length, 200),
+      height: min(45.0 * list.length, 200),
       constraints: BoxConstraints(maxHeight: 200, maxWidth: 320),
       decoration: BoxDecoration(),
       clipBehavior: Clip.antiAlias,
