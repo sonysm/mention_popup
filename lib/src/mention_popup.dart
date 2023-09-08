@@ -7,6 +7,8 @@
  * -----
  * Copyright (c) 2023 ERROR-DEV All rights reserved.
  */
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mention_popup/mentionable_text_field.dart';
 
@@ -25,7 +27,7 @@ class MentionPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 320,
-      height: 200,
+      height: min(44.0 * list.length, 200),
       constraints: BoxConstraints(maxHeight: 200, maxWidth: 320),
       decoration: BoxDecoration(),
       clipBehavior: Clip.antiAlias,
