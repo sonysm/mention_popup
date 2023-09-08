@@ -1,4 +1,4 @@
-import 'package:mentionable_text_field/mentionable_text_field.dart';
+import 'package:mention_popup/mentionable_text_field.dart';
 
 /// Example implementation of [Mentionable].
 class MyUser extends Mentionable {
@@ -26,6 +26,5 @@ class MyUser extends Mentionable {
   int get hashCode => mentionLabel.hashCode;
 
   @override
-  // TODO: implement displayTitle
-  String get displayTitle => throw UnimplementedError();
+  String get displayTitle => 'my user name';
 }

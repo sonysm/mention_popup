@@ -10,7 +10,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   flutter:
     sdk: flutter
-  mentionable_text_field:
+  mention_popup:
     path: ../../
   rxdart: ^0.27.5
   flutter_portal: ^1.1.4

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mentionable_text_field/mentionable_text_field.dart';
+import 'package:mention_popup/mentionable_text_field.dart';
 import 'package:mentionable_text_field_example/bouncy_animation.dart';
 
 /// Listview that contains the [mentionables].

@@ -27,12 +27,12 @@ class MentionPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 320,
-      height: min(45.0 * list.length, 200),
+      height: min((44.0 * list.length + (16)), 200),
       constraints: BoxConstraints(maxHeight: 200, maxWidth: 320),
       decoration: BoxDecoration(),
       clipBehavior: Clip.antiAlias,
       child: ListView.separated(
-        padding: EdgeInsets.zero,
+        padding: EdgeInsets.symmetric(vertical: 8),
         itemCount: list.length,
         separatorBuilder: (context, index) => Material(
           child: Divider(height: 0.0, color: Colors.grey.shade100),

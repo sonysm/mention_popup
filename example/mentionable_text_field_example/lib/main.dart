@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
-import 'package:mentionable_text_field/mentionable_text_field.dart';
+import 'package:mention_popup/mentionable_text_field.dart';
 import 'package:mentionable_text_field_example/my_user.dart';
 import 'package:rxdart/subjects.dart';
 
@@ -47,6 +47,19 @@ class _MyHomePageState extends State<MyHomePage>
   final _resultStreamController = StreamController<String>();
   final FocusNode _node = FocusNode();
 
+  static String image =
+      'https://fastly.picsum.photos/id/570/200/200.jpg?hmac=fgqmD9u8TqyXJG9fhqV-EbhIUXYwTIxfsPiNfaD28_Y';
+  final _userList = [
+    MyUser('jonh', image),
+    MyUser('doh', image),
+    // MyUser('albert', image),
+    // MyUser('devid', image),
+    // MyUser('devid', image),
+    // MyUser('devid', image),
+    // MyUser('devid', image),
+    // MyUser('devid', image),
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -81,20 +94,13 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
-    String image =
-        'https://fastly.picsum.photos/id/570/200/200.jpg?hmac=fgqmD9u8TqyXJG9fhqV-EbhIUXYwTIxfsPiNfaD28_Y';
     return Scaffold(
         appBar: AppBar(),
         body: Container(
           child: GnkEditor(
-            onDetectMention: (c) {},
+            focusNode: _node,
             onControllerReady: (c) {},
-            mentionList: (s) => [
-              MyUser('jonh', image),
-              MyUser('doh', image),
-              MyUser('albert', image),
-              MyUser('devid', image),
-            ],
+            mentionList: (mention) => _userList,
           ),
         ));
   }

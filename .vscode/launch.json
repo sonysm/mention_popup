@@ -1,0 +1,54 @@
+/*
+ * File: launch.json
+ * Project: .vscode
+ * -----
+ * Created Date: Friday September 8th 2023
+ * Author: Sony Sum
+ * -----
+ * Copyright (c) 2023 ERROR-DEV All rights reserved.
+ */
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "mention_popup",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "mention_popup (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "mention_popup (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "mentionable_text_field_example",
+            "cwd": "example/mentionable_text_field_example",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "mentionable_text_field_example (profile mode)",
+            "cwd": "example/mentionable_text_field_example",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "mentionable_text_field_example (release mode)",
+            "cwd": "example/mentionable_text_field_example",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
