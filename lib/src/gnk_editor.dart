@@ -96,7 +96,7 @@ class _GnkEditorState extends State<GnkEditor>
 
   Widget _mentionCell(Mentionable mention, Future<void> Function() closePopup) {
     var avatar = mention.avatar.isEmpty
-        ? "https://i.ibb.co/9ryjmVN/ic-profile.png"
+        ? "https://i.ibb.co/GW2ShzR/Size-80pt.png"
         : mention.avatar;
 
     return ListTile(
@@ -116,63 +116,60 @@ class _GnkEditorState extends State<GnkEditor>
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(13),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: WithKeepKeyboardPopupMenu(
-          calculatePopupPosition: (menuSize, overlayRect, buttonRect) {
-            var bottomCenter = buttonRect.bottomCenter;
-            return Offset((buttonRect.width / 2) - 125, bottomCenter.dy);
-          },
-          backgroundBuilder: (context, child) => Material(
-            elevation: 8,
-            borderRadius: BorderRadius.circular(10),
-            child: child,
-          ),
-          menuBuilder: (context, closePopup) {
-            _closePopup = closePopup;
-            return Obx(
-              () => MentionPopup(
-                closePopup: closePopup,
-                list: _mentionList.value,
-                builder: (p0, index, mention) =>
-                    _mentionCell(mention, closePopup),
-              ),
-            );
-          },
-          childBuilder: ((context, openPopup) {
-            _openPopup = openPopup;
-            return MentionableTextField(
-              focusNode: widget.focusNode,
-              onChanged: widget.onChanged,
-              decoration: widget.decoration,
-              maxLength: widget.maxLength,
-              maxLines: widget.maxLines,
-              minLines: widget.minLines,
-              autocorrect: widget.autocorrect,
-              obscureText: widget.obscureText,
-              onControllerReady: (value) {
-                _textFieldController = value;
-                widget.onControllerReady!(value);
-                _textFieldController.onTextChange = widget.onChanged;
-              },
-              onSubmitted: print,
-              mentionables: _mentionList,
-              onMentionablesChanged: (mention) async {
-                if (widget.onDetectMention != null) {
-                  widget.onDetectMention!(mention);
-                }
-                _mentionList(await widget.mentionList(mention));
-                if (mention.trim().isEmpty || _mentionList.isEmpty) {
-                  _closePopup?.call();
-                } else {
-                  _openPopup?.call();
-                }
-              },
-            );
-          }),
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: WithKeepKeyboardPopupMenu(
+        calculatePopupPosition: (menuSize, overlayRect, buttonRect) {
+          var bottomCenter = buttonRect.bottomCenter;
+          return Offset((buttonRect.width / 2) - 125, bottomCenter.dy);
+        },
+        backgroundBuilder: (context, child) => Material(
+          elevation: 8,
+          borderRadius: BorderRadius.circular(10),
+          child: child,
         ),
+        menuBuilder: (context, closePopup) {
+          _closePopup = closePopup;
+          return Obx(
+            () => MentionPopup(
+              closePopup: closePopup,
+              list: _mentionList.value,
+              builder: (p0, index, mention) =>
+                  _mentionCell(mention, closePopup),
+            ),
+          );
+        },
+        childBuilder: ((context, openPopup) {
+          _openPopup = openPopup;
+          return MentionableTextField(
+            focusNode: widget.focusNode,
+            onChanged: widget.onChanged,
+            decoration: widget.decoration,
+            maxLength: widget.maxLength,
+            maxLines: widget.maxLines,
+            minLines: widget.minLines,
+            autocorrect: widget.autocorrect,
+            obscureText: widget.obscureText,
+            onControllerReady: (value) {
+              _textFieldController = value;
+              widget.onControllerReady!(value);
+              _textFieldController.onTextChange = widget.onChanged;
+            },
+            onSubmitted: print,
+            mentionables: _mentionList,
+            onMentionablesChanged: (mention) async {
+              if (widget.onDetectMention != null) {
+                widget.onDetectMention!(mention);
+              }
+              _mentionList(await widget.mentionList(mention));
+              if (mention.trim().isEmpty || _mentionList.isEmpty) {
+                _closePopup?.call();
+              } else {
+                _openPopup?.call();
+              }
+            },
+          );
+        }),
       ),
     );
   }

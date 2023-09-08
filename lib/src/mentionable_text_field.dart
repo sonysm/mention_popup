@@ -523,7 +523,6 @@ class _MentionableTextFieldState extends State<MentionableTextField> {
       textCapitalization: widget.textCapitalization,
       textDirection: widget.textDirection,
       textInputAction: widget.textInputAction,
-      toolbarOptions: widget.toolbarOptions,
     );
   }
 }
