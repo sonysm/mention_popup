@@ -48,12 +48,24 @@ class MentionTextEditingController extends TextEditingController {
     var replace = RegExp('(?=$p1\\S+)|(?<=$p2)');
     var content = newValue;
     content = content.split(replace).map((e) {
-      if (e.startsWith('<span>') && e.endsWith('</span>')) {
-        return escapingMentionCharacter;
+      if (e.startsWith('<span>@') && e.endsWith('</span>')) {
+        // take real handleName
+        var handleName = e.substring(6, e.length - 5);
+        // ccheck must exsit in list [user]
+        if (_searchExistMention(handleName)) {
+          return escapingMentionCharacter;
+        }
       }
       return e;
     }).join();
     super.text = content;
+  }
+
+  /// check handle name has in text
+  /// and must me exist in mention list [User]
+  bool _searchExistMention(String handleName) {
+    return mentionList.firstWhereOrNull((e) => e.mentionLabel == handleName) !=
+        null;
   }
 
   set mentionList(List<Mentionable> list) {
