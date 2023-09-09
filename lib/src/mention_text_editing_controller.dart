@@ -50,7 +50,7 @@ class MentionTextEditingController extends TextEditingController {
     content = content.split(replace).map((e) {
       if (e.startsWith('<span>@') && e.endsWith('</span>')) {
         // take real handleName
-        var handleName = e.substring(6, e.length - 5);
+        var handleName = e.substring(7, e.length - 7);
         // ccheck must exsit in list [user]
         if (_searchExistMention(handleName)) {
           return escapingMentionCharacter;
