@@ -33,6 +33,7 @@ class GnkEditor extends StatefulWidget {
     this.minLines,
     this.autocorrect = true,
     this.obscureText = false,
+    this.padding = const EdgeInsets.all(16.0),
   });
 
   /// Page title.
@@ -46,6 +47,7 @@ class GnkEditor extends StatefulWidget {
   final int? minLines;
   final bool obscureText;
   final bool autocorrect;
+  final EdgeInsets padding;
 
   final MaxLengthEnforcement? maxLengthEnforcement;
   final ValueChanged<String>? onChanged;
@@ -118,7 +120,7 @@ class _GnkEditorState extends State<GnkEditor>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: widget.padding,
       child: WithKeepKeyboardPopupMenu(
         calculatePopupPosition: (menuSize, overlayRect, buttonRect) {
           var bottomCenter = buttonRect.bottomCenter;
