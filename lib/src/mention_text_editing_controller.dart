@@ -64,7 +64,8 @@ class MentionTextEditingController extends TextEditingController {
   /// check handle name has in text
   /// and must me exist in mention list [User]
   bool _searchExistMention(String handleName) {
-    return mentionList.firstWhereOrNull((e) => e.mentionLabel == handleName) !=
+    return mentionList.firstWhereOrNull(
+            (e) => e.mentionLabel.substring(1) == handleName) !=
         null;
   }
 
